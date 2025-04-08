@@ -1,0 +1,26 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #111;
+}
+
+.mask-container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mask-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* This is where the magic happens */
+  mask-image: radial-gradient(circle 80px at var(--mask-x, 50%) var(--mask-y, 50%), black 100%, transparent 101%);
+  -webkit-mask-image: radial-gradient(circle 80px at var(--mask-x, 50%) var(--mask-y, 50%), black 100%, transparent 101%);
+  transition: mask-image 0.2s ease;
+  -webkit-transition: -webkit-mask-image 0.2s ease;
+}
