@@ -19,10 +19,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;  /* Hide the image initially */
-  transition: opacity 0.9s ease;  /* Smooth fade-in when visible */
+  opacity: 0;  
+  transition: opacity 0.5s ease; 
 }
 
 .mask-container img.visible {
-  opacity: 1; /* Show the image when hovered */
+  opacity: 1; 
 }

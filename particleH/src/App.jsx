@@ -6,7 +6,7 @@ function App() {
   const containerRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Defining trailing particles for the effect
+  // Define trailing particles for the effect
   const positions = useRef(
     Array.from({ length: 100 }, () => ({ x: 0, y: 0 }))
   );
@@ -21,26 +21,22 @@ function App() {
 
       const lerp = (start, end, amt) => start + (end - start) * amt;
 
-      // Move positions of particles to follow the cursor with more distance
+      // Move positions of particles to follow the cursor
       positions.current = positions.current.map((pos, index) => {
         const target = index === 0 ? { x: mouseX, y: mouseY } : positions.current[index - 1];
-        
-        // Increase the amount by which particles "trail" behind the cursor (larger amt)
-        const distanceFactor = 0.5 + (index / 100); 
-        
         return {
-          x: lerp(pos.x, target.x, distanceFactor),
-          y: lerp(pos.y, target.y, distanceFactor),
+          x: lerp(pos.x, target.x, 0.3), // Smooth following of cursor
+          y: lerp(pos.y, target.y, 0.3),
         };
       });
 
       // Create radial gradients for particle mask effect
       const mask = positions.current
         .map((pos, index) => {
-          const opacity = 1000 - index / positions.current.length; // Fade effect here
+          const opacity = 1 - index / positions.current.length; 
 
           // Make the first particle bigger and the others smaller
-          const size = 800 + (10 - index * 100);
+          const size = 80 + (10 - index * 0.5);
 
           return `radial-gradient(circle ${size}px at ${pos.x}px ${pos.y}px, rgba(0, 0, 0, ${opacity}) 0%, rgba(0, 0, 0, 0) 50%)`;
         })
