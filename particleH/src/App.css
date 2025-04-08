@@ -7,20 +7,22 @@
 }
 
 .mask-container {
+  position: relative;
   width: 400px;
   height: 400px;
-  position: relative;
   overflow: hidden;
+  mask-image: var(--mask);
+  -webkit-mask-image: var(--mask);
 }
 
 .mask-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;  /* Hide the image initially */
+  transition: opacity 0.9s ease;  /* Smooth fade-in when visible */
+}
 
-  /* This is where the magic happens */
-  mask-image: radial-gradient(circle 80px at var(--mask-x, 50%) var(--mask-y, 50%), black 100%, transparent 101%);
-  -webkit-mask-image: radial-gradient(circle 80px at var(--mask-x, 50%) var(--mask-y, 50%), black 100%, transparent 101%);
-  transition: mask-image 0.2s ease;
-  -webkit-transition: -webkit-mask-image 0.2s ease;
+.mask-container img.visible {
+  opacity: 1; /* Show the image when hovered */
 }
